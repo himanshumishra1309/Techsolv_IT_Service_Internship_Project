@@ -1,7 +1,7 @@
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
-import { getYoutubeTranscript } from "../services/youtube.service.js";
+import { getYoutubeVideoData } from "../services/youtube.service.js";
 
 export const analyzeYoutube = asyncHandler(async(req, res) => {
     const {url} = req.body;
@@ -10,7 +10,7 @@ export const analyzeYoutube = asyncHandler(async(req, res) => {
         throw new ApiError(400, "Youtube URL is required");
     }
 
-    const transcript = await getYoutubeTranscript(url);
+    const transcript = await getYoutubeVideoData(url);
 
     if(!transcript){
         throw new ApiError(500, "Error generating transcript");
