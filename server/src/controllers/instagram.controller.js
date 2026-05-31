@@ -1,7 +1,7 @@
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
-import { getInstagramData } from "../services/instagram.service.js";
+import { getInstagramReelData } from "../services/instagram.service.js";
 
 export const processInstagramReel = asyncHandler(async(req, res) => {
     const {reelUrl} = req.body;
@@ -10,7 +10,7 @@ export const processInstagramReel = asyncHandler(async(req, res) => {
         throw new ApiError(400, "Instagram reel is required");
     }
 
-    const reelMetadata = await getInstagramData(reelUrl);
+    const reelMetadata = await getInstagramReelData(reelUrl);
 
     if(!reelMetadata){
         throw new ApiError(500, "Reel metadata not received");
