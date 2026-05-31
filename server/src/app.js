@@ -16,4 +16,8 @@ app.use(cookieParser());
 
 app.get('/', (req, res)=>{res.send("Healthy Server")});
 
+import youtubeRouter from './routes/youtube.routes.js'
+
+app.use("/api/v1/youtube", youtubeRouter);
+
 export {app}
