@@ -10,6 +10,15 @@ export const getInstagramData = async (reelUrl) => {
       preferFreeFormats: true,
     });
 
+    const likes = data.like_count || 0;
+    const comments = data.comment_count || 0;
+
+    const views = data.view_count || null;
+
+    const estimatedViews = views || Math.max(likes * 20, comments * 200);
+
+    const engagementRate = ((likes + comments) / estimatedViews) * 100;
+
     const metadata = {
       title: info.title,
       creator: info.uploader,
@@ -22,8 +31,9 @@ export const getInstagramData = async (reelUrl) => {
       thumbnail: info.thumbnail,
       hashtags: extractHashtags(info.description),
       commentsData: info.comments || [],
-      videoUrl:
-        info.requested_downloads?.[0]?.requested_formats?.[0]?.url || null,
+      videoUrl: info.requested_downloads?.[0]?.requested_formats?.[0]?.url || null,
+      views: estimatedViews,
+      engagementRate: engagementRate
     };
 
     return metadata;
