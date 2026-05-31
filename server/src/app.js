@@ -17,7 +17,9 @@ app.use(cookieParser());
 app.get('/', (req, res)=>{res.send("Healthy Server")});
 
 import youtubeRouter from './routes/youtube.routes.js'
+import instagramRouter from './routes/instagram.routes.js'
 
 app.use("/api/v1/youtube", youtubeRouter);
+app.use("/api/v1/instagram", instagramRouter);
 
 export {app}
