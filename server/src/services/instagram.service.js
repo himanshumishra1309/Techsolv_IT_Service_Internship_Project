@@ -10,10 +10,10 @@ export const getInstagramData = async (reelUrl) => {
       preferFreeFormats: true,
     });
 
-    const likes = data.like_count || 0;
-    const comments = data.comment_count || 0;
+    const likes = info.like_count || 0;
+    const comments = info.comment_count || 0;
 
-    const views = data.view_count || null;
+    const views = info.view_count || null;
 
     const estimatedViews = views || Math.max(likes * 20, comments * 200);
 
@@ -45,3 +45,7 @@ export const getInstagramData = async (reelUrl) => {
 const extractHashtags = (text = "") => {
   return [...text.matchAll(/#(\w+)/g)].map((match) => match[1]);
 };
+
+// export const getReelTranscript = async(){
+
+// }
