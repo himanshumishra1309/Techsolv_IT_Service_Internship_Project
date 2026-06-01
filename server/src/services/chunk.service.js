@@ -1,4 +1,4 @@
-import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
+import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
 
 export const splitTranscript = async (transcript) => {
     const splitter = new RecursiveCharacterTextSplitter({
